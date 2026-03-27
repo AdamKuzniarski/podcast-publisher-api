@@ -22,7 +22,7 @@ public class PodcastController {
                         2L,
                         "JavaScript Frontend Basics",
                         "Ein Podcast über React und Frontend",
-                        "Adam"
+                        "Adam2"
                 )
         );
     }
