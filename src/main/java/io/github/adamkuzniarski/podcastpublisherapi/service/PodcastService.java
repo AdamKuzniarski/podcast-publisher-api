@@ -14,7 +14,7 @@ public class PodcastService {
 
     public PodcastService() {
         podcasts.add(new PodcastResponse(1L, "Java Backend Basics", "Ein Podcast über Backend-Lernen", "Adam"));
-        podcasts.add(new PodcastResponse(2L, "Spring Boot Insights", "Ein Podcast über Spring
+        podcasts.add(new PodcastResponse(2L, "Spring Boot Insights", "Ein Podcast über Spring","Adam"));
     }
 
     public List<PodcastResponse> getPodcasts() {
