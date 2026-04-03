@@ -3,6 +3,7 @@ package io.github.adamkuzniarski.podcastpublisherapi.controller;
 import io.github.adamkuzniarski.podcastpublisherapi.dto.CreatePodcastRequest;
 import io.github.adamkuzniarski.podcastpublisherapi.dto.PodcastResponse;
 import io.github.adamkuzniarski.podcastpublisherapi.service.PodcastService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +26,7 @@ public class PodcastController {
         }
 
     @PostMapping("/api/podcasts")
-    public PodcastResponse createPodcast(@RequestBody CreatePodcastRequest request) {
+    public PodcastResponse createPodcast(@Valid @RequestBody CreatePodcastRequest request) {
         return podcastService.createPodcast(request);
     }
 }
