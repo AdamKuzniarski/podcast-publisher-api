@@ -4,6 +4,8 @@ import io.github.adamkuzniarski.podcastpublisherapi.dto.CreatePodcastRequest;
 import io.github.adamkuzniarski.podcastpublisherapi.dto.PodcastResponse;
 import io.github.adamkuzniarski.podcastpublisherapi.service.PodcastService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,12 +23,14 @@ public class PodcastController {
     }
 
     @GetMapping("/api/podcasts")
-        public List<PodcastResponse> getPodcasts() {
-            return podcastService.getPodcasts();
-        }
+    public List<PodcastResponse> getPodcasts() {
+        return podcastService.getPodcasts();
+    }
 
     @PostMapping("/api/podcasts")
-    public PodcastResponse createPodcast(@Valid @RequestBody CreatePodcastRequest request) {
-        return podcastService.createPodcast(request);
+    public ResponseEntity<PodcastResponse> createPodcast(@Valid @RequestBody CreatePodcastRequest request) {
+        PodcastResponse createdPodcast = podcastService.createPodcast(request);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdPodcast);
     }
 }
