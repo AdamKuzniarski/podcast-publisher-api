@@ -17,12 +17,26 @@ public class InMemoryPodcastRepository  implements PodcastRepository{
 
     @Override
     public Optional<Podcast> findById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(podcastsById.get(id));
     }
 
     @Override
     public Podcast save(Podcast podcast) {
-        return null;
+       Podcast storedPodcast = podcast;
+
+       if(podcast.getId() == null) {
+           long newId = idSequence.incrementAndGet();
+
+           storedPodcast = new Podcast(
+                   newId,
+                   podcast.getTitle(),
+                   podcast.getDescription(),
+                   podcast.getAuthor()
+           );
+       }
+
+       podcastsById.put(storedPodcast.getId(), storedPodcast);
+       return storedPodcast;
     }
 
     @Override
